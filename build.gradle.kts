@@ -9,6 +9,7 @@ version = "1.0.0"
 
 val jaicf = "1.1.1"
 val logback = "1.2.3"
+val junit = "5.6.0"
 
 // Main class to run application on heroku. Either JaicpPollerKt, or JaicpServerKt. Will propagate to .jar main class.
 application {
@@ -30,6 +31,9 @@ dependencies {
     implementation("com.just-ai.jaicf:core:$jaicf")
     implementation("com.just-ai.jaicf:jaicp:$jaicf")
     implementation("com.just-ai.jaicf:caila:$jaicf")
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:$junit")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junit")
 }
 
 tasks {
@@ -38,6 +42,9 @@ tasks {
     }
     compileTestKotlin {
         kotlinOptions.jvmTarget = "1.8"
+    }
+    test {
+        useJUnitPlatform()
     }
 }
 
